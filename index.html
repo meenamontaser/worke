@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>عملاء جاردن سيتي</title>
+<meta name="application-name" content="عملاء جاردن سيتي">
+<meta name="apple-mobile-web-app-title" content="عملاء جاردن سيتي">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d2137">
+
+<!-- Inline SVG icon as base64 for home screen -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cmVjdCB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgcng9IjI0IiBmaWxsPSIjMGQyMTM3Ii8+PHRleHQgeD0iNjQiIHk9IjU1IiBmb250LXNpemU9IjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5G1PC90ZXh0Pjx0ZXh0IHg9IjY0IiB5PSI5NiIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzkwY2FmOSIgZm9udC1mYW1pbHk9IkFyaWFsIj7Yudmv2YTYp9ihPC90ZXh0Pjwvc3ZnPg==">
+
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#0b1623; color:#e2e8f0; min-height:100vh; }
+
+.header { background:linear-gradient(90deg,#0d2137,#163352); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid #1e4570; position:sticky; top:0; z-index:10; }
+.header h1 { font-size:16px; font-weight:800; color:#fff; }
+.badge { background:#1976d2; color:#fff; border-radius:20px; padding:3px 12px; font-size:12px; font-weight:700; }
+
+.wrap { max-width:900px; margin:0 auto; padding:14px 12px; }
+
+.card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin-bottom:14px; }
+.card-title { color:#64b5f6; font-size:14px; font-weight:700; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.07); }
+
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:480px){ .grid { grid-template-columns:1fr; } }
+
+.field label { display:block; color:rgba(255,255,255,0.55); font-size:12px; font-weight:600; margin-bottom:4px; }
+.req { color:#f87171; }
+.field input { width:100%; padding:11px 12px; border-radius:8px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.06); color:#fff; font-size:15px; font-family:inherit; outline:none; -webkit-appearance:none; }
+.field input:focus { border-color:#1976d2; background:rgba(255,255,255,0.09); }
+.field input.err { border-color:#f87171; }
+.err-msg { color:#f87171; font-size:11px; margin-top:3px; min-height:15px; }
+
+.btn-row { display:flex; gap:8px; margin-top:14px; }
+.btn-blue { background:#1976d2; color:#fff; border:none; border-radius:8px; padding:13px 20px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; flex:1; }
+.btn-blue:active { background:#1565c0; }
+.btn-gray { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:13px 14px; font-size:14px; cursor:pointer; font-family:inherit; }
+
+.top-row { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+.search-box { flex:1; min-width:140px; padding:10px 12px; border-radius:8px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.06); color:#fff; font-size:14px; font-family:inherit; outline:none; -webkit-appearance:none; }
+.search-box:focus { border-color:#1976d2; }
+.btn-sm { border:none; border-radius:8px; padding:10px 12px; font-size:13px; cursor:pointer; font-family:inherit; font-weight:600; white-space:nowrap; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.12); }
+
+.count-row { color:rgba(255,255,255,0.4); font-size:12px; margin-bottom:10px; }
+.count-row b { color:#90caf9; }
+
+.tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+table { width:100%; border-collapse:collapse; font-size:13px; min-width:640px; }
+th { background:rgba(25,118,210,0.15); color:#90caf9; padding:10px 8px; text-align:right; border-bottom:1px solid rgba(255,255,255,0.08); font-weight:700; white-space:nowrap; font-size:12px; }
+td { padding:10px 8px; border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:middle; }
+tbody tr:active td { background:rgba(255,255,255,0.04); }
+.c-num  { color:rgba(255,255,255,0.3); text-align:center; width:30px; }
+.c-name { font-weight:600; color:#fff; }
+.c-phase { color:#a5d6a7; }
+.c-phone { direction:ltr; text-align:right; font-family:monospace; }
+.c-eng  { color:#ffcc80; }
+.c-eph  { direction:ltr; text-align:right; font-family:monospace; color:rgba(255,255,255,0.5); }
+.c-dim  { color:rgba(255,255,255,0.4); }
+.ic { background:none; border:none; cursor:pointer; font-size:18px; padding:5px; border-radius:6px; }
+.ic:active { background:rgba(255,255,255,0.1); }
+.empty { text-align:center; color:rgba(255,255,255,0.3); padding:40px 0; font-size:14px; }
+
+.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); padding:12px 24px; border-radius:10px; font-weight:700; font-size:14px; color:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.5); z-index:999; display:none; white-space:nowrap; max-width:90vw; text-align:center; }
+.t-ok  { background:#1b5e20; }
+.t-del { background:#b71c1c; }
+.t-warn{ background:#e65100; }
+
+.overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); display:none; align-items:center; justify-content:center; z-index:998; padding:16px; }
+.overlay.on { display:flex; }
+.modal { background:#112233; border-radius:14px; padding:24px; text-align:center; max-width:280px; width:100%; }
+.modal h3 { color:#fff; margin-bottom:8px; }
+.modal p  { color:rgba(255,255,255,0.5); font-size:13px; margin-bottom:18px; line-height:1.6; }
+.modal-btns { display:flex; gap:10px; justify-content:center; }
+.btn-red { background:#b71c1c; color:#fff; border:none; border-radius:8px; padding:11px 20px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; }
+
+/* Install banner */
+.install-bar { background:#0d2f0d; border:1px solid #2e7d32; border-radius:10px; padding:12px 14px; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.install-bar span { font-size:13px; color:#a5d6a7; line-height:1.5; }
+.install-bar button { background:#2e7d32; color:#fff; border:none; border-radius:7px; padding:8px 14px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>👥 عملاء جاردن سيتي</h1>
+  <span class="badge" id="bdg">0 عميل</span>
+</div>
+
+<div class="wrap">
+
+  <!-- Install hint -->
+  <div class="install-bar" id="install-bar">
+    <span>📱 لإضافة أيقونة على شاشتك:<br>اضغط ⋮ ← <b>إضافة إلى الشاشة الرئيسية</b></span>
+    <button onclick="document.getElementById('install-bar').style.display='none'">✕</button>
+  </div>
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="card-title" id="form-title">➕ إضافة عميل جديد</div>
+    <div class="grid">
+      <div class="field">
+        <label><span class="req">* </span>اسم العميل</label>
+        <input id="f1" placeholder="الاسم الكامل" inputmode="text">
+        <div class="err-msg" id="e1"></div>
+      </div>
+      <div class="field">
+        <label>المرحلة</label>
+        <input id="f2" placeholder="مثال: المرحلة الأولى" inputmode="text">
+      </div>
+      <div class="field">
+        <label>رقم الوحدة</label>
+        <input id="f3" placeholder="رقم الوحدة" inputmode="text">
+      </div>
+      <div class="field">
+        <label><span class="req">* </span>رقم تليفون العميل</label>
+        <input id="f4" placeholder="05xxxxxxxx" inputmode="tel">
+        <div class="err-msg" id="e4"></div>
+      </div>
+      <div class="field">
+        <label>اسم المهندس التابع</label>
+        <input id="f5" placeholder="اسم المهندس" inputmode="text">
+      </div>
+      <div class="field">
+        <label>رقم تليفون المهندس</label>
+        <input id="f6" placeholder="05xxxxxxxx" inputmode="tel">
+        <div class="err-msg" id="e6"></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-blue" id="save-btn" onclick="doSave()">✅ حفظ وإضافة للجدول</button>
+      <button class="btn-gray" onclick="doReset()">🗑 مسح</button>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="card">
+    <div class="top-row">
+      <input class="search-box" id="srch" placeholder="🔍 بحث بالاسم أو الهاتف..." oninput="render()">
+      <button class="btn-sm" onclick="doExport()">📥 تصدير CSV</button>
+    </div>
+    <div class="count-row" id="cnt">إجمالي: <b>0</b></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>م</th>
+            <th>اسم العميل</th>
+            <th>المرحلة</th>
+            <th>رقم الوحدة</th>
+            <th>تليفون العميل</th>
+            <th>اسم المهندس</th>
+            <th>تليفون المهندس</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="empty">لا يوجد عملاء — أضف أول عميل من الأعلى</div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="overlay" id="ov">
+  <div class="modal">
+    <div style="font-size:36px;margin-bottom:8px">⚠️</div>
+    <h3>تأكيد الحذف</h3>
+    <p>سيتم حذف العميل نهائياً<br>ولا يمكن التراجع.</p>
+    <div class="modal-btns">
+      <button class="btn-red" onclick="doDelete()">نعم، احذف</button>
+      <button class="btn-gray" onclick="closeOv()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var KEY="gc_v5", DATA=[], editId=null, delId=null;
+
+function loadData(){ try{ var r=localStorage.getItem(KEY); DATA=r?JSON.parse(r):[]; }catch(e){ DATA=[]; } }
+function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(DATA)); }catch(e){ showToast("warn","⚠️ تعذّر الحفظ"); } }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2); }
+function gv(id){ return (document.getElementById(id).value||"").trim(); }
+function sv(id,v){ var el=document.getElementById(id); if(el) el.value=v||""; }
+
+function setErr(eid,msg){
+  var eEl=document.getElementById(eid); if(eEl) eEl.textContent=msg;
+  var fEl=document.getElementById("f"+eid.slice(1)); if(fEl){ if(msg) fEl.classList.add("err"); else fEl.classList.remove("err"); }
+}
+function clearErrs(){ ["e1","e4","e6"].forEach(function(id){ setErr(id,""); }); }
+
+function doReset(){
+  ["f1","f2","f3","f4","f5","f6"].forEach(function(id){ sv(id,""); });
+  clearErrs(); editId=null;
+  document.getElementById("form-title").textContent="➕ إضافة عميل جديد";
+  document.getElementById("save-btn").textContent="✅ حفظ وإضافة للجدول";
+}
+
+function validate(){
+  clearErrs(); var ok=true;
+  if(!gv("f1")){ setErr("e1","مطلوب"); ok=false; }
+  if(!gv("f4")){ setErr("e4","مطلوب"); ok=false; }
+  else if(!/^[0-9+\s\-()]{7,15}$/.test(gv("f4"))){ setErr("e4","رقم غير صحيح"); ok=false; }
+  if(gv("f6")&&!/^[0-9+\s\-()]{7,15}$/.test(gv("f6"))){ setErr("e6","رقم غير صحيح"); ok=false; }
+  return ok;
+}
+
+function doSave(){
+  if(!validate()) return;
+  var rec={id:editId||uid(),name:gv("f1"),phase:gv("f2"),unit:gv("f3"),phone:gv("f4"),engName:gv("f5"),engPhone:gv("f6")};
+  if(editId){
+    for(var i=0;i<DATA.length;i++){ if(DATA[i].id===editId){ DATA[i]=rec; break; } }
+    showToast("ok","✅ تم تحديث بيانات العميل");
+  } else {
+    DATA.push(rec);
+    showToast("ok","✅ تمت الإضافة للجدول");
+  }
+  persist(); doReset(); render();
+}
+
+function startEdit(id){
+  var r=null; for(var i=0;i<DATA.length;i++){ if(DATA[i].id===id){ r=DATA[i]; break; } }
+  if(!r) return;
+  editId=id; sv("f1",r.name); sv("f2",r.phase); sv("f3",r.unit); sv("f4",r.phone); sv("f5",r.engName); sv("f6",r.engPhone);
+  clearErrs();
+  document.getElementById("form-title").textContent="✏️ تعديل بيانات العميل";
+  document.getElementById("save-btn").textContent="💾 حفظ التعديل";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function askDel(id){ delId=id; document.getElementById("ov").classList.add("on"); }
+function closeOv(){ delId=null; document.getElementById("ov").classList.remove("on"); }
+function doDelete(){
+  var nd=[]; for(var i=0;i<DATA.length;i++){ if(DATA[i].id!==delId) nd.push(DATA[i]); }
+  DATA=nd; persist(); closeOv(); render(); showToast("del","🗑️ تم حذف العميل");
+}
+
+function render(){
+  var q=(document.getElementById("srch").value||"").toLowerCase().trim();
+  var list=[];
+  for(var i=0;i<DATA.length;i++){
+    var r=DATA[i]; if(!q){ list.push(r); continue; }
+    var v=[r.name,r.phase,r.unit,r.phone,r.engName,r.engPhone];
+    for(var j=0;j<v.length;j++){ if(v[j]&&v[j].toString().toLowerCase().indexOf(q)>=0){ list.push(r); break; } }
+  }
+  document.getElementById("bdg").textContent=DATA.length+" عميل";
+  document.getElementById("cnt").innerHTML="إجمالي: <b>"+DATA.length+"</b> &nbsp;|&nbsp; نتائج: <b>"+list.length+"</b>";
+  var tbody=document.getElementById("tbody"), empty=document.getElementById("empty");
+  if(!list.length){ tbody.innerHTML=""; empty.style.display="block"; empty.textContent=DATA.length===0?"لا يوجد عملاء — أضف أول عميل من الأعلى":"لا توجد نتائج للبحث"; return; }
+  empty.style.display="none";
+  var html="";
+  for(var i=0;i<list.length;i++){
+    var r=list[i];
+    html+="<tr><td class='c-num'>"+(i+1)+"</td><td class='c-name'>"+x(r.name)+"</td><td class='c-phase'>"+(x(r.phase)||"—")+"</td><td class='c-dim'>"+(x(r.unit)||"—")+"</td><td class='c-phone'>"+x(r.phone)+"</td><td class='c-eng'>"+(x(r.engName)||"—")+"</td><td class='c-eph'>"+(x(r.engPhone)||"—")+"</td><td style='white-space:nowrap'><button class='ic' style='color:#64b5f6' onclick='startEdit(\""+r.id+"\")'>✏️</button><button class='ic' style='color:#ef9a9a' onclick='askDel(\""+r.id+"\")'>🗑️</button></td></tr>";
+  }
+  tbody.innerHTML=html;
+}
+
+function x(s){ if(!s)return""; return s.toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function doExport(){
+  if(!DATA.length){ showToast("warn","⚠️ لا يوجد بيانات"); return; }
+  var rows=[["م","اسم العميل","المرحلة","رقم الوحدة","رقم تليفون العميل","اسم المهندس التابع","رقم تليفون المهندس"]];
+  for(var i=0;i<DATA.length;i++){ var r=DATA[i]; rows.push([i+1,r.name,r.phase,r.unit,r.phone,r.engName,r.engPhone]); }
+  var csv="\uFEFF";
+  for(var i=0;i<rows.length;i++){ csv+=rows[i].map(function(v){ return'"'+(v||"").toString().replace(/"/g,'""')+'"'; }).join(",")+"\n"; }
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
+  a.download="عملاء_جاردن_سيتي.csv"; a.click();
+  showToast("ok","📥 تم التصدير");
+}
+
+var tt;
+function showToast(type,msg){
+  var el=document.getElementById("toast");
+  el.textContent=msg; el.className="toast t-"+type; el.style.display="block";
+  clearTimeout(tt); tt=setTimeout(function(){ el.style.display="none"; },3000);
+}
+
+loadData(); render();
+</script>
+</body>
+</html>
